@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="key-input" v-show="inputing" @click="inputing=false">{{num | formatMoney}}</div>
-        <input class="key-input" v-model.number="num" placeholder="1元起投" v-show="!inputing" @blur="changeInput" v-money>
+        <input class="key-input" :value="num" placeholder="1元起投" v-show="!inputing" v-money @blur="$emit('input', $event.target.value)">
     </div>
 </template>
 
@@ -10,6 +10,7 @@
 
 
 	export default {
+		props:['value'],
 		data() {
 			return {
 				num: '',
